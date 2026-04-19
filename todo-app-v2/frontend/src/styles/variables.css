@@ -1,0 +1,41 @@
+/* ─────────────────────────────────────────────────────────────
+   styles/variables.css — Design Tokens
+   
+   HOW TO CHANGE THE THEME:
+     Edit the values inside :root { } below.
+     Every color, font, radius, etc. is in one place.
+     Components reference these variables — they don't hardcode values.
+   ───────────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Colors ── */
+  --bg:           #0d0d0f;
+  --surface:      #16161a;
+  --surface2:     #1e1e24;
+  --border:       #2a2a33;
+  --border-hover: #3a3a45;
+  --accent:       #c8f135;
+  --accent-dim:   #9bbf27;
+  --text:         #f0f0f0;
+  --text-muted:   #7a7a8a;
+  --danger:       #ff5e5e;
+  --danger-bg:    rgba(255, 94, 94, 0.1);
+
+  /* ── Priority colors ── */
+  --priority-low:    #4a9eff;
+  --priority-medium: #f5a623;
+  --priority-high:   #ff5e5e;
+
+  /* ── Typography ── */
+  --font-display: "Syne", sans-serif;
+  --font-body:    "DM Sans", sans-serif;
+
+  /* ── Layout ── */
+  --sidebar-w: 240px;
+  --nav-h:     64px;
+  --radius:    14px;
+  --radius-sm: 8px;
+
+  /* ── Shadows ── */
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}

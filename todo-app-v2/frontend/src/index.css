@@ -1,0 +1,23 @@
+/* Global reset and base styles */
+@import "./styles/variables.css";
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body, #root {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Priority dot utility classes — used by TaskItem */
+.priority-low    { color: var(--priority-low); }
+.priority-medium { color: var(--priority-medium); }
+.priority-high   { color: var(--priority-high); }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 99px; }

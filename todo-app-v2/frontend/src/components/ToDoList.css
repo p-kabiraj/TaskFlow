@@ -1,0 +1,260 @@
+/* ── Page container ────────────────────────────────────────── */
+.todolist {
+  max-width: 700px;
+}
+
+/* ── Header ────────────────────────────────────────────────── */
+.todolist-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.todolist-title {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -1px;
+}
+
+.todolist-count {
+  font-size: 13px;
+  color: var(--text-muted);
+  background: var(--surface2);
+  border-radius: 99px;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+}
+
+/* ── Add task form ─────────────────────────────────────────── */
+.add-task-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  /* HOW TO CHANGE LAYOUT: edit flex-direction or gap */
+}
+
+.task-input {
+  flex: 1;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 18px;
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.task-input::placeholder { color: var(--text-muted); }
+
+.task-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200, 241, 53, 0.08);
+}
+
+/* Priority dropdown */
+/* HOW TO REMOVE PRIORITY: delete this block + the <select> in ToDoList.js */
+.priority-select {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 13px 14px;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+
+.priority-select:focus { border-color: var(--accent); }
+
+/* Add button */
+.add-btn {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  border-radius: var(--radius);
+  padding: 13px 22px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.add-btn:hover:not(:disabled) {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.add-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+/* ── Task list ─────────────────────────────────────────────── */
+.task-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── Individual task row ───────────────────────────────────── */
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  /* Entry animation */
+  animation: task-slide-in 0.2s ease;
+  transition: border-color 0.15s, opacity 0.22s, transform 0.22s;
+}
+
+@keyframes task-slide-in {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.task-item:hover { border-color: var(--border-hover); }
+
+/* Completed state — dim the whole row */
+.task-item.done { opacity: 0.5; }
+
+/* Exit animation — triggered by removing state in TaskItem */
+.task-item.removing {
+  opacity: 0;
+  transform: translateX(14px);
+  pointer-events: none;
+}
+
+/* ── Checkbox ──────────────────────────────────────────────── */
+.task-checkbox {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 2px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg);
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.task-checkbox:hover { border-color: var(--accent); }
+
+.task-checkbox.checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Task title ────────────────────────────────────────────── */
+.task-title {
+  flex: 1;
+  font-size: 15px;
+  color: var(--text);
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.task-item.done .task-title {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+/* ── Priority dot ──────────────────────────────────────────── */
+/* HOW TO CHANGE PRIORITY COLOURS: edit variables in variables.css */
+.priority-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: currentColor;
+}
+
+/* ── Date ──────────────────────────────────────────────────── */
+.task-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ── Delete button ─────────────────────────────────────────── */
+.task-delete {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  /* Hidden by default, revealed on row hover */
+  opacity: 0;
+  transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.task-item:hover .task-delete { opacity: 1; }
+
+.task-delete:hover {
+  background: var(--danger-bg);
+  color: var(--danger);
+}
+
+/* ── Loading / error / empty states ───────────────────────── */
+.state-msg {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-muted);
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.state-msg.error { color: var(--danger); }
+
+/* CSS-only spinner */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 64px 0;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 40px;
+  opacity: 0.2;
+}
+
+.empty-state p {
+  font-size: 14px;
+  max-width: 280px;
+  line-height: 1.7;
+}
